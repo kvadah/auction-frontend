@@ -1,0 +1,91 @@
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  color: #fff;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #facc15; /* yellow */
+  cursor: pointer;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.nav-links li:hover {
+  color: #facc15;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.login-btn {
+  padding: 8px 16px;
+  border: none;
+  background-color: #facc15;
+  color: #111;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.login-btn:hover {
+  background-color: #e5b80f;
+}
+
+.register-btn {
+  padding: 8px 16px;
+  border: 2px solid #facc15;
+  background-color: transparent;
+  color: #facc15;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.register-btn:hover {
+  background-color: #facc15;
+  color: #111;
+}
+
+.mobile-menu {
+  display: none; /* we'll make it appear on small screens later */
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .nav-links, .nav-buttons {
+    display: none;
+  }
+  .mobile-menu {
+    display: block;
+  }
+}
