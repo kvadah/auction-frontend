@@ -1,6 +1,6 @@
 .hero {
-  width: 97vw;
-  height: 100vh; /* full viewport height */
+  width: 100vw;
+  height: 65vh; /* full viewport height */
   background: linear-gradient(135deg, #111, #222);
   display: flex;
   align-items: center;
