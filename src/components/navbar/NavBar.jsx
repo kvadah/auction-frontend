@@ -19,8 +19,7 @@ export default function Navbar() {
 
         {/* Buttons */}
         <div className="nav-buttons">
-          <button className="login-btn">Login</button>
-          <button className="register-btn">Register</button>
+          <button className="signin-btn">Sign In</button>
         </div>
 
         {/* Mobile menu placeholder */}
