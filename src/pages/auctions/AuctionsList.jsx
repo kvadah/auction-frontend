@@ -2,6 +2,21 @@ import { useEffect, useState } from "react";
 import { getAuctions } from "../../api/auctions";
 import "./AuctionsList.css";
 
+const CATEGORIES = [
+  { label: "All", value: "all" },
+  { label: "Technology", value: "Technology" },
+  { label: "Household", value: "Household" },
+  { label: "Clothing", value: "Clothing" },
+  { label: "Books", value: "Books" },
+  { label: "Sports", value: "Sports" },
+  { label: "Toys", value: "Toys" },
+  { label: "Furniture", value: "Furniture" },
+  { label: "Automotive", value: "Automotive" },
+    { label: "Others", value: "Others" },
+
+];
+
+
 function Countdown({ endTime }) {
   const [timeLeft, setTimeLeft] = useState("");
 
@@ -35,56 +50,96 @@ function Countdown({ endTime }) {
 
 export default function AuctionsShowcase() {
   const [auctions, setAuctions] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState("all");
 
   useEffect(() => {
     getAuctions().then(setAuctions);
   }, []);
 
+  const filteredAuctions = auctions.filter(a => {
+    const matchesCategory =
+      activeCategory === "all" || a.category === activeCategory;
+    const matchesSearch = a.title
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
   return (
-    <section className="auction-showcase">
-      {auctions.map(a => (
-        <div key={a.id} className="auction-row">
+    <div className="auctions-wrapper">
+      {/* Section Title */}
+      <h2 className="section-title center">Recent Auctions</h2>
 
-          <Countdown endTime={a.ends_at} />
+      {/* Search Bar */}
+      <div className="auction-controls">
+        <input
+          type="text"
+          placeholder="Search auctions..."
+          value={searchQuery}
+          onChange={e => setSearchQuery(e.target.value)}
+          className="auction-search"
+        />
 
-          <img
-            src={`http://127.0.0.1:8000${a.image}`}
-            alt={a.title}
-            className="auction-image"
-          />
-
-          <div className="auction-content">
-            <h2>{a.title}</h2>
-            <p className="description">{a.description}</p>
-
-            <div className="prices">
-              <div>
-                <span>Starting Price</span>
-                <strong>${a.starting_price}</strong>
-              </div>
-              <div>
-                <span>Current Price</span>
-                <strong className="current">${a.current_price}</strong>
-              </div>
-            </div>
-
-            <div className="cta-wrapper">
-              <div className="total-bids">
-                Total Bids: <strong>{a.bids?.length || 0}</strong>
-              </div>
-
-              <button
-                onClick={() => window.location.href = `/auction/${a.id}`}
-                className="cta-btn"
-              >
-                Place Bid
-              </button>
-            </div>
-
-          </div>
-
+        {/* Category Filters */}
+        <div className="auction-categories">
+          {CATEGORIES.map(cat => (
+            <button
+              key={cat.value}
+              className={`category-btn ${
+                activeCategory === cat.value ? "active" : ""
+              }`}
+              onClick={() => setActiveCategory(cat.value)}
+            >
+              {cat.label}
+            </button>
+          ))}
         </div>
-      ))}
-    </section>
+      </div>
+
+      {/* Auction Grid */}
+      <section className="auction-showcase">
+        {filteredAuctions.map(a => (
+          <div key={a.id} className="auction-card">
+            <Countdown endTime={a.ends_at} />
+
+            <img
+              src={`http://127.0.0.1:8000${a.image}`}
+              alt={a.title}
+              className="auction-image"
+            />
+
+            <div className="auction-content">
+              <h2>{a.title}</h2>
+              <p className="description">{a.description}</p>
+
+              <div className="prices">
+                <div>
+                  <span>Starting</span>
+                  <strong>${a.starting_price}</strong>
+                </div>
+                <div>
+                  <span>Current</span>
+                  <strong className="current">${a.current_price}</strong>
+                </div>
+              </div>
+
+              <div className="footer">
+                <span className="total-bids">
+                  Bids: <strong>{a.bids?.length || 0}</strong>
+                </span>
+
+                <button
+                  className="cta-btn"
+                  onClick={() => (window.location.href = `/auction/${a.id}`)}
+                >
+                  Place Bid
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </section>
+    </div>
   );
 }

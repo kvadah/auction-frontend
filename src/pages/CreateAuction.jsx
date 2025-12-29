@@ -12,10 +12,7 @@ export default function CreateAuction() {
   const navigate = useNavigate();
   const token = localStorage.getItem("access");
 
-  useEffect(() => {
-    if (!token) navigate("/login");
-  }, [token, navigate]);
-
+ 
   const submitAuction = async () => {
     if (!image) return alert("Image is required!");
 
