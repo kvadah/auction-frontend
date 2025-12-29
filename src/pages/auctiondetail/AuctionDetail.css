@@ -1,0 +1,160 @@
+/* ================================
+   PAGE CONTAINER
+================================ */
+.auction-detail-container {
+  display: flex;
+  gap: 40px;
+  padding: 30px;
+  position: relative;
+  flex-wrap: wrap;
+  background: #121212;
+  color: #f9fafb;
+  min-height: 100vh;
+}
+
+/* ================================
+   AUCTION MAIN CONTENT
+================================ */
+.auction-main {
+  flex: 1;
+  max-width: 650px;
+}
+
+.auction-title {
+  font-size: 36px;
+  color: #22c55e;
+  margin-bottom: 20px;
+}
+
+.auction-image {
+  width: 100%;
+  height: 500px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.auction-desc {
+  font-size: 16px;
+  color: #ccc;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.auction-prices div {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.current-price {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+/* ================================
+   BID FORM
+================================ */
+.bid-form {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.bid-form input {
+  flex: 1;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.bid-form button {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  background: #22c55e;
+  color: #111;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bid-form button:hover {
+  background: #16a34a;
+}
+
+/* ================================
+   LIVE BIDS CARD
+================================ */
+.live-bids-card {
+  width: 300px;
+  max-height: 400px;
+  background: #1f1f1f;
+  border-radius: 12px;
+  padding: 20px;
+  position: sticky;
+  top: 30px;
+  align-self: flex-start;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  overflow-y: auto;
+  margin-left: 150px;
+}
+
+.live-bids-card h3 {
+  color: #22c55e;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.live-bids-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.live-bids-card li {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bidder {
+  font-weight: bold;
+  color: #facc15;
+}
+
+.amount {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.bid-time {
+  font-size: 12px;
+  color: #999;
+  margin-top: 2px;
+}
+
+.no-bids {
+  text-align: center;
+  color: #777;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 1000px) {
+  .auction-detail-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .live-bids-card {
+    width: 100%;
+    max-height: 300px;
+    margin-top: 20px;
+    position: relative;
+    top: 0;
+  }
+}

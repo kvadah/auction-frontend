@@ -3,7 +3,7 @@ import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import VerifyEmailPage from './pages/EmailVerify';
 import AuctionList from './pages/auctions/AuctionsList';
-import AuctionDetail from './pages/AuctionDetail';
+import AuctionDetail from './pages/auctiondetail/AuctionDetail';
 import CreateAuction from './pages/CreateAuction';
 import Home from './pages/Home';
 
