@@ -22,7 +22,7 @@ export default function AuctionDetail() {
 
   const fetchAuction = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/auctions/${id}/`);
+      const res = await axios.get(`https://auction-system-django-backend.onrender.com/api/auctions/${id}/`);
       setAuction(res.data);
       setBids(res.data.bids || []);
     } catch (err) {
@@ -32,7 +32,7 @@ export default function AuctionDetail() {
 
   const fetchBids = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/bids/?auction=${id}`);
+      const res = await axios.get(`https://auction-system-django-backend.onrender.com/?auction=${id}`);
       setBids(res.data);
     } catch (err) {
       console.error("Failed to fetch bids:", err);
@@ -40,12 +40,12 @@ export default function AuctionDetail() {
   };
 
   const setupWebSocket = () => {
-    const socket = new WebSocket(`ws://localhost:8000/ws/auction/${id}/`);
+    const socket = new WebSocket(`wss://auction-system-django-backend.onrender.com/ws/auction/${id}/`);
 
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
       if (data.bidder) {
-        setBids(prev => [{ 
+        setBids(prev => [{
           id: prev.length + 1,
           bidder_name: data.bidder,
           amount: parseFloat(data.amount),
@@ -73,7 +73,7 @@ export default function AuctionDetail() {
       <div className="auction-main">
         <h1 className="auction-title">{auction.title}</h1>
         <img
-          src={auction.image.startsWith("http") ? auction.image : `http://127.0.0.1:8000${auction.image}`}
+          src={auction.image.startsWith("http") ? auction.image : `https://auction-system-django-backend.onrender.com${auction.image}`}
           alt={auction.title}
           className="auction-image"
         />

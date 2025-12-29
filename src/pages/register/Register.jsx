@@ -22,7 +22,7 @@ export default function Register() {
 
     try {
       await axios.post(
-        "http://127.0.0.1:8000/api/auth/register/",
+        "https://auction-system-django-backend.onrender.com/api/auth/register/",
         form,
         {
           headers: { "Content-Type": "application/json" },

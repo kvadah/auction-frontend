@@ -104,7 +104,7 @@ export default function AuctionsShowcase() {
             <Countdown endTime={a.ends_at} />
 
             <img
-              src={`http://127.0.0.1:8000${a.image}`}
+              src={`https://auction-system-django-backend.onrender.com${a.image}`}
               alt={a.title}
               className="auction-image"
             />

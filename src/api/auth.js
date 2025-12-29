@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://127.0.0.1:8000/api/auth/login/";
+const API = "https://auction-system-django-backend.onrender.comapi/auth/login/";
 const API_URL = "http://127.0.0.1:8000/api/auth/"; // or /token/
 
 export const loginUser = async (email, password) => {
@@ -23,7 +23,7 @@ export const refreshToken = async () => {
   const refresh = localStorage.getItem("refresh");
   if (!refresh) throw new Error("No refresh token stored");
 
-  const response = await axios.post("http://127.0.0.1:8000/api/auth/token/refresh/", {
+  const response = await axios.post("https://auction-system-django-backend.onrender.com/api/auth/token/refresh/", {
     refresh,
   });
 
