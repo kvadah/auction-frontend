@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "https://auction-system-django-backend.onrender.comapi/auth/login/";
+const API = "https://auction-system-django-backend.onrender.com/api/auth/login/";
 const API_URL = "http://127.0.0.1:8000/api/auth/"; // or /token/
 
 export const loginUser = async (email, password) => {
